@@ -16,6 +16,8 @@ snmp-check <target>
 
 Web:
 # Directory busting
+wfuzz -c -w /opt/useful/seclists/Discovery/Web-Content/raft-small-directories-lowercase.txt -u http://<target>/FUZZ -t 200 --hc 404,403
+ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-20000.txt -H "Host: FUZZ.<target>.htb" -u http://<target>.htb --mc 200
 feroxbuster -u http://<target> -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
 gobuster dir -u http://<target> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
@@ -95,6 +97,11 @@ Exploitsearch:
 searchsploit <service_name>
 searchsploit -m <exploit_id>  # copy to current dir
 
+Hash Cracking:
+# Try john then hashcat
+john <hash file> --wordlist=rockyou.txt
+Hashcat -m 1000 [hash] [wordlist] (-m 0 for MD5, 1400 for SHA256)
+
 Reverse Shells: 
 revshells.com
 
@@ -114,7 +121,7 @@ Check GTFOBins
 
 Windows PrivEsc
 ''' Do First '''
-whoami /all
+whoami /all [/priv]
 net user <username>
 systeminfo
 '''
@@ -143,6 +150,18 @@ ssh -D 1080 user@<target>
 
 Port Specific:
 
+FTP (21/22):
+ ftp <target> <port>
+^ pass anonymous:anonymous to check for anonymous access
+
+SSH (22):
+ # ID RSA login
+ chmod <700|644> id_rsa
+ ssh -i id_rsa [user]@[ip]
+
+TFTP (69):
+ tftp <target>
+
 Web 80/443:
  Browse manually first and check source code
  Directory bust with feroxbuster/gobuster
@@ -151,10 +170,25 @@ Web 80/443:
  Check /robots.txt, /.git/, /backup/, and /api
 
 SMB (139/445):
- Null session: netexec smb <target> -u '' -p ''
+ Null session: netexec smb <target> -u '' -p ''  [--rid-brute] [--shares] [--continue-on-success]
+^ Can supply -u users.txt and -p "pass" for password spraying 
  List shares: smbclient -L //<target>/ -N
+ Connect to share: Smbclient //[ip]/share
  Check for read/write access on shares
  Enum users: enum4linux -a <target>
+
+SNMP (161/162):
+ # Get footprint, community string, then comm string
+ snmpwalk -v2c -c public <target>
+ onesixtyone -c /opt/useful/SecLists/Discovery/SNMP/snmp.txt 10.129.5.151
+ braa [comm string]@[ip]:.1.3.6.*
+
+LDAP (389):
+ Netexec ldap [ip] -u [name] -p [pass] (to check for access)
+ ldapsearch -H ldap://cicada.htb -D 'michael.wrightson@cicada.htb' -w ‘[pass]' -b 'dc=cicada,dc=htb' (print out data, add grep to look for things)
+
+WinRM (5985):
+ evil-winrm -i <target.com> -u [user] -p '[pass]' 
 
 Active Directory:
  Get domain info: ldapsearch or enum4linux
