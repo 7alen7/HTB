@@ -15,7 +15,7 @@ ldapsearch -x -H ldap://<target> -b "DC=domain,DC=local"
 snmp-check <target>
 
 Web:
-# Directory busting
+# Directory busting. Run All.
 wfuzz -c -w /opt/useful/seclists/Discovery/Web-Content/raft-small-directories-lowercase.txt -u http://<target>/FUZZ -t 200 --hc 404,403
 ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-20000.txt -H "Host: FUZZ.<target>.htb" -u http://<target>.htb --mc 200
 feroxbuster -u http://<target> -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
