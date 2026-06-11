@@ -3,7 +3,7 @@ Enumeration:
 nmap -sC -sV -oN scan.txt <target>
 nmap -p- --min-rate 1000 <target>
 
-# SMB
+# SMB 139, 445
 netexec smb <target> -u '' -p ''
 smbclient -L //<target>/ -N
 smbmap -H <target>
@@ -85,7 +85,7 @@ smbmap -H <target> -u <username> -p <password> -d <domain>
 smbmap -H <target> -u <username> -p <password> -r <share>
 
 
-LDAP & RPC:
+LDAP & RPC 135:
 # ldapsearch
 ldapsearch -x -H ldap://<target> -b "DC=domain,DC=local"
 ldapsearch -x -H ldap://<target> -D "user@domain.local" -w 'pass' -b "DC=domain,DC=local"
