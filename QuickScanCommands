@@ -110,6 +110,7 @@ Linux PrivEsc:
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 export TERM=xterm
 # Ctrl+Z, then: stty raw -echo; fg
+# script -qc /bin/bash /dev/null
 ''''
 
 1. LinPeas
@@ -118,6 +119,7 @@ export TERM=xterm
 getcap -r 2>/dev/null
 cat /etc/crontab OR [ls /etc/cron.*]
 Check GTFOBins
+Can sudo as other user? `sudo -u <user> <cmd>`
 
 Windows PrivEsc
 ''' Do First '''
