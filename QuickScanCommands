@@ -136,6 +136,7 @@ systeminfo
 1. winpeas.exe
 2. Run PowerUp: Import-Module .\PowerUp.ps1; Invoke-AllChecks
 3. Check PowerShell history: C:\Users\<user>\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+4. get-process
 4. Unquoted service paths
 5. Modifiable services
 6. AlwaysInstallElevated
