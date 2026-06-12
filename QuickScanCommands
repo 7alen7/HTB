@@ -8,6 +8,9 @@ netexec smb <target> -u '' -p ''
 smbclient -L //<target>/ -N
 smbmap -H <target>
 
+# SMB 135, 445. Enumerate users
+crackmapexec smb <target> -u <user> -p <pass> --users
+
 # LDAP
 ldapsearch -x -H ldap://<target> -b "DC=domain,DC=local"
 
