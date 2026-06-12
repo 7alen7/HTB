@@ -1,5 +1,10 @@
 # Web Exploitation
 
+## SqlMap
+
+Get Request from Burp (Proxy request, send to repeater, copy all text, r-c copy to file)
+sqlmap -r reset.req -p email --batch --level 3 (--dbs)
+
 ## 135, 445, 5985 smb:
 
 1. Get possible creds/Crack hashes (from site, )
