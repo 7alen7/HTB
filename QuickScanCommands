@@ -9,7 +9,9 @@ smbclient -L //<target>/ -N
 smbmap -H <target>
 
 # SMB 135, 445. Enumerate users
-crackmapexec smb <target> -u '<user>' -p '<pass>' --users # use '' for user and pass for anon
+crackmapexec smb <target> -u users.txt -p pass.txt
+crackmapexec smb <target> -u <user> -p <pass>
+
 
 # LDAP
 ldapsearch -x -H ldap://<target> -b "DC=domain,DC=local"
