@@ -5,6 +5,7 @@
 1. Get possible creds/Crack hashes (from site, )
 2. try evil-rm
 3. try crackmapexec to enumerate logins/users
+4. Keep running crackmapexec with old users/pass on new users/pass
 
 ## XXE:
 
