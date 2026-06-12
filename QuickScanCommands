@@ -3,6 +3,9 @@ Enumeration:
 nmap -sC -sV -oN scan.txt <target>
 nmap -p- --min-rate 1000 <target>
 
+# DNS 53
+dig @<ip> <host> axfr
+
 # SMB 139, 445
 netexec smb <target> -u '' -p ''
 smbclient -L //<target>/ -N
@@ -11,7 +14,6 @@ smbmap -H <target>
 # SMB 135, 445. Enumerate users
 crackmapexec smb <target> -u users.txt -p pass.txt
 crackmapexec smb <target> -u <user> -p <pass> --rid-brute
-
 
 # LDAP
 ldapsearch -x -H ldap://<target> -b "DC=domain,DC=local"
