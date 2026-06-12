@@ -10,7 +10,7 @@ smbmap -H <target>
 
 # SMB 135, 445. Enumerate users
 crackmapexec smb <target> -u users.txt -p pass.txt
-crackmapexec smb <target> -u <user> -p <pass>
+crackmapexec smb <target> -u <user> -p <pass> --rid-brute
 
 
 # LDAP
