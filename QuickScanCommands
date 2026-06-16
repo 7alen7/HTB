@@ -170,7 +170,8 @@ Port Specific:
 
 FTP (21/22):
  ftp <target> <port>
-^ pass anonymous:anonymous to check for anonymous access
+ ftp anonymous@<target> <port>
+
 
 SSH (22):
  # ID RSA login
