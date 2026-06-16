@@ -1,11 +1,17 @@
-Enumeration:
-# Port scanning
-nmap -sC -sV -oN scan.txt <target>
-nmap -p- --min-rate 1000 <target>
+Install Extra Tools:
 
 # Web Spidering:
 pip3 install scrapy; wget -O ReconSpider.zip https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip; unzip ReconSpider.zip;
 python3 ReconSpider.py http://<target>
+
+# XSS Strike
+git clone https://github.com/s0md3v/XSStrike.git; cd XSStrike; pip install -r requirements.txt; 
+
+============================
+Enumeration:
+# Port scanning
+nmap -sC -sV -oN scan.txt <target>
+nmap -p- --min-rate 1000 <target>
 
 # DNS 53
 dig @<ip> <target> axfr
@@ -143,13 +149,13 @@ net user <username>
 systeminfo
 '''
 1. winpeas.exe
+2. cmdkey /list
 2. Run PowerUp: Import-Module .\PowerUp.ps1; Invoke-AllChecks
 3. Check PowerShell history: C:\Users\<user>\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 4. get-process
 4. Unquoted service paths
 5. Modifiable services
 6. AlwaysInstallElevated
-7. Stored credentials: cmdkey /list
 8. Token impersonation (if SeImpersonate): PrintSpoofer, JuicyPotato, GodPotato
 9. DLL hijacking (check for missing DLLs in WinPEAS output)
 
