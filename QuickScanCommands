@@ -159,6 +159,8 @@ systeminfo
 8. Token impersonation (if SeImpersonate): PrintSpoofer, JuicyPotato, GodPotato
 9. DLL hijacking (check for missing DLLs in WinPEAS output)
 
+Exploit-Suggester (Good for older OS, Server 2012:
+git clone https://github.com/strozfriedberg/Windows-Exploit-Suggester; python2 -m pip install xlrd==1.2.0; python2 windows-exploit-suggester.py --database db.xls --systeminfo ../sysfile; 
 
 SSH Tunnel: 
 # Local port forward (access remote service locally)
